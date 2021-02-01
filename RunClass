@@ -1,0 +1,247 @@
+package rust;
+
+import members.*;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+public class RunClass {
+    public int day = 14;
+    public int month = 9;
+    public int year = 2002;
+    //ARRAY LIST
+    ArrayList<Collage> alumni = new ArrayList<Collage>();
+    ArrayList<Student> students = new ArrayList<Student>();
+    ArrayList<Faculty> faculty = new ArrayList<Faculty>();
+    ArrayList<Staff> staff = new ArrayList<Staff>();
+    public String collageName;
+
+
+    private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+    public void run() {
+        //THIS IS GETTING THE STUDENT BIRTHDAY INTO STRING
+        String birth = month + "/" + day + "/" + "/" + year;
+
+
+        System.out.println("---------------------Next\n");
+        //THIS IS RUNNING THE STUDENT CLASS
+        Student s1 = new Student("name", birth, RollInCollage.STUDENT, Courses.ENGLISH, 1.4, "advocate");
+        System.out.println(s1);
+        alumni.add(s1);
+        students.add(s1);
+        System.out.println("---------------------Next\n");
+        //THIS IS RUNNING THE STAFF CLASS
+        Staff st1 = new Staff(RollInCollage.STAFF, "Mikei", birth, "janitor", "braulio");
+        System.out.println(st1);
+        alumni.add(st1);
+        System.out.println("---------------------Next\n");
+        //THIS IS GOING TO RUN THE FACULTY CLASS
+        Faculty f1 = new Faculty("MR Guerra", birth, RollInCollage.FACULTY, 321, "8 am to 10am", Courses.ENGLISH, false);
+        System.out.println(f1);
+        alumni.add(f1);
+        System.out.println("---------------------end");
+
+        //THIS IS THE USERS INPUT
+        int userNumber = -1;
+        String userText = "";
+        String name;
+
+        System.out.println("Hello! Welcome to your collage index");
+        System.out.println("First things first");
+        System.out.println("what would you like to name your collage? : ");
+        try {
+            name = reader.readLine();
+            collageName = name;
+        } catch (IOException ioe) {
+
+        }
+        //THIS IS GOING TO SET THE COLLAGE NAME BE-FOR EVERYTHING
+
+        do {
+            userNumber = collageMenu();
+            switch (userNumber) {
+                case 1:
+                    if (stringOne() != 0) {
+                        switch (stringOne()) {
+
+                            case 1:
+
+                                System.out.println("here are all the students");
+                                System.out.println(students);
+                                try{
+                                    userText = reader.readLine();
+                                    userNumber = Integer.parseInt(userText);
+                                    if (userNumber == 0) {
+                                        switch (collageMenu()){}
+                                    }
+                                }catch(IOException ioe) {
+                                    System.out.println("try something else");
+                                }
+
+                                break;
+                            case 2:
+                                System.out.println("here are all your Faculty");
+                                System.out.println(faculty);
+                                try{
+                                    userText = reader.readLine();
+                                    userNumber = Integer.parseInt(userText);
+                                    if (userNumber == 0) {
+                                        switch (collageMenu()){}
+                                    }
+                                }catch(IOException ioe) {
+                                    System.out.println("try something else");
+                                }
+
+                                break;
+                            case 3:
+                                System.out.println("here are all the Staff");
+                                System.out.println(staff);
+                                try{
+                                    userText = reader.readLine();
+                                    userNumber = Integer.parseInt(userText);
+                                    if (userNumber == 0) {
+                                        switch (collageMenu()){}
+                                    }
+                                }catch(IOException ioe) {
+                                    System.out.println("try something else");
+                                }
+
+
+                        }
+                    }else {
+                        switch (collageMenu()){
+
+                        }
+                    }
+
+
+                case 2:
+
+                    if (addPeople() != 0) {
+
+                        try {
+                            System.out.println("");
+                            switch (addPeople()) {
+                                case 0:
+                                    return;
+                                case 1:
+                                    System.out.println();
+
+                            }
+                        } catch (Exception e) {
+                            System.out.println("thats not working");
+                        }
+                    } else {
+                       /* switch (collageMenu()){
+                            case 1:
+                                switch (stringOne()){}
+
+                        }*/
+                    }
+
+
+            }
+
+
+        } while (userNumber !=0);
+
+    }
+
+
+    //THIS IS THE PROMPT
+    public int promptInt(String prompt, int min, int max) {
+        //THE USERS VARIABLES
+        int userNum = -1;
+        String input = null;
+
+
+        boolean isInvalid = true;
+
+        do {
+            //THIS IS ASKING THE USER TO NAME THE COLLAGE
+
+            System.out.println(prompt);
+            try {
+                input = reader.readLine();
+                userNum = Integer.parseInt(input);
+                isInvalid = userNum < min || userNum > max;
+            } catch (IOException ioe) {
+                System.out.println("try again ");
+            } catch (NumberFormatException nfe) {
+                System.out.println("please try something diffrent");
+            }
+
+        } while (isInvalid);
+        return userNum;
+
+    }
+
+    public int peopleTypes(String peopleInSchool, int min, int max) {
+        int userNum = -1;
+        String input = null;
+        boolean invalid = true;
+        do {
+            System.out.println(peopleInSchool);
+            try {
+                input = reader.readLine();
+                userNum = Integer.parseInt(input);
+                invalid = userNum < min || userNum > max;
+                break;
+
+            } catch (IOException ioe) {
+                System.out.println("try a number");
+            } catch (NumberFormatException nfe) {
+                System.out.println("try something diffrent");
+            }
+
+        } while (invalid);
+        return userNum;
+    }
+
+    private int add(String prompt, int min, int max) {
+        String input = null;
+        int userNum = 0;
+        boolean invalid = true;
+        //THIS IS GOING TO SHOW A PROMPT FOR ADDING PEOPLE
+        do {
+            System.out.println(prompt);
+            try {
+                input = reader.readLine();
+                userNum = Integer.parseInt(input);
+                invalid = userNum > min || userNum < max;
+            } catch (IOException ioe) {
+                System.out.println("can you try something diffrent plz");
+
+            }
+            System.out.println("");
+        } while (invalid);
+        return userNum;
+    }
+
+    private int stringOne() {
+        int number = 0;
+        String choiceOfCollage = "\nWhat would you like to look at?\n1)Student " + "\n2)Faculty" + "\n3)Staff" + "\n0)exit";
+        int minOption = 0;
+        int max = 3;
+        return peopleTypes(choiceOfCollage, minOption, max);
+    }
+
+    public int addPeople() {
+        String groupChoicePrompt = "\n Who would you like to add 1)Student 2) Faculty 3)Staff";
+        int minOption = 0;
+        int max3 = 3;
+        return add(groupChoicePrompt, minOption, max3);
+    }
+
+    private int collageMenu() {
+        String collagePrompt = "\n\t Welcome to " + toString() + " index menu where would you like to go " +
+                "\n1)Look at and find " + " alumni" + "\n2)add person " +
+                "\n3)remove someone" + "\n0)exit";
+        int minOption = 0;
+        int maxOption = 5;
+        return promptInt(collagePrompt, minOption, maxOption);
+    }
+}
