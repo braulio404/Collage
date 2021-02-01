@@ -1,0 +1,43 @@
+package members;
+
+public class Staff extends Collage {
+    private String advocate;
+    private String job;
+//DEFAULT CONSTRUCTOR
+public Staff(){
+    setAdvocate("i dont think you have one");
+    setJob("you dont have a job");
+
+}
+//CONSTRUCTOR
+    public Staff(RollInCollage rollInCollage, String name, String birthday, String job, String advocate) {
+        super(rollInCollage, name, birthday);
+        setJob(job);
+        setAdvocate(advocate);
+    }
+
+
+
+    @Override
+    public String toString() {
+        return new StringBuilder(super.toString()).
+                append("\n\t*").append("Job Title : ").append(job).
+                append("\n\t*").append("Advocating : ").append(advocate).toString();
+    }
+    //GETTERS AND SETTERS
+    public String getAdvocate() {
+        return advocate;
+    }
+
+    public void setAdvocate(String advocate) {
+        this.advocate = advocate;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+}
