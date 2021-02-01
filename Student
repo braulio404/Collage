@@ -1,0 +1,50 @@
+package members;
+
+//This is not being used
+public class Student extends Collage {
+    private double GPA;
+    private String advocate;
+    private Courses courses;
+
+
+//DEFAULT CONSTRUCTOR
+    public Student(){
+        setGPA(GPA);
+        setAdvocate(advocate);
+        this.courses = Courses.ENGLISH;
+
+    }
+
+    //CONSTRUCTOR
+    public Student(String name, String birthday, RollInCollage rollInCollage, Courses courses, double gpa, String advocate) {
+        super(rollInCollage, birthday, name);
+        this.courses = courses;
+        setGPA(gpa);
+        setAdvocate(advocate);
+    }
+
+    //TO STRING
+    @Override
+
+    public String toString() {
+        String Classes = courses == Courses.MATH ? "Math" : courses == Courses.ENGLISH ? "English" : courses == Courses.HISTORY ? "History" : courses == Courses.SCIENCE ? "Science" : "Health";
+        return new StringBuilder(super.toString()).append("\n\t*").append("GPA is : ").append(GPA).append("\n\t*").append("Courses : ").append(Classes).append("\n\t*").append("advocate : ").append(advocate).toString();
+    }
+
+
+    //GETTERS AND SETTERS
+    public double getGPA() {
+        return GPA;
+    }
+
+    public void setGPA(double GPA) {
+        this.GPA = GPA;
+    }
+
+    public String getAdvocate() {
+        return advocate;
+    }
+
+    public void setAdvocate(String advocate) {
+        this.advocate = advocate;
+    }
