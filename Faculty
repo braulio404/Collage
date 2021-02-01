@@ -1,0 +1,67 @@
+package members;
+
+public class Faculty extends Collage {
+    private int officeNumber;
+    private String officeHours;
+    private Courses coursesTeaching;
+    private boolean fullTime;
+
+
+    //DEFAULT CONSTRUCTOR
+    public Faculty(){
+        setOfficeNumber(12);
+        setOfficeHours("3am -5:am");
+    }
+    //CONSTRUCTOR
+    public Faculty(String name, String birthday, RollInCollage rollInCollage, int officeNumber, String officeHours, Courses coursesTeaching, boolean fullTime) {
+        super(rollInCollage, name, birthday);
+        setOfficeNumber(officeNumber);
+        setOfficeHours(officeHours);
+        setCoursesTeaching(coursesTeaching);
+        setFullTime(fullTime);
+    }
+
+    @Override
+    public String toString() {
+        String courses = coursesTeaching == Courses.ENGLISH ? "English" : coursesTeaching == Courses.MATH ? "Math" : coursesTeaching == Courses.HISTORY ? "History" : coursesTeaching == Courses.SCIENCE ? "Science" : "Health";
+
+        return new StringBuilder(super.toString()).append("\n\t*").append("office Number : ").append(officeNumber).
+                append("\n\t*").append("office Hours : ").append(officeHours).
+                append("\n\t*").append("Courses Currently Teaching").append(courses).
+                append("\n\t").append("Full Time?").append(fullTime).toString();
+    }
+
+    //GETTERS AND SETTERS
+    public int getOfficeNumber() {
+        return officeNumber;
+    }
+
+    public void setOfficeNumber(int officeNumber) {
+        this.officeNumber = officeNumber;
+    }
+
+    public String getOfficeHours() {
+        return officeHours;
+    }
+
+    public void setOfficeHours(String officeHours) {
+        this.officeHours = officeHours;
+    }
+
+    public Courses getCoursesTeaching() {
+        return coursesTeaching;
+    }
+
+    public void setCoursesTeaching(Courses coursesTeaching) {
+        this.coursesTeaching = coursesTeaching;
+    }
+
+    public boolean isFullTime() {
+        return fullTime;
+    }
+
+    public void setFullTime(boolean fullTime) {
+        this.fullTime = fullTime;
+    }
+
+}
