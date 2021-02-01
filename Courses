@@ -1,0 +1,7 @@
+package members;
+
+public enum Courses {
+    MATH, ENGLISH, HISTORY, SCIENCE, HEALTH;
+
+
+}
